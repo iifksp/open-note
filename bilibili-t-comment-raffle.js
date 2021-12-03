@@ -3,7 +3,7 @@
   const oid = "598864860801381543";
 
   // max-page size
-  let max = 10;
+  let max = 20;
 
   let data = [];
   let next = 0;
