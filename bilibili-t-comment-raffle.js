@@ -1,6 +1,7 @@
 (async function () {
   // config
-  const oid = "598864860801381543";
+  const oid = "183839705"; // 3骨钉大师的荣耀
+  const amount = 3;
 
   // max-page size
   let max = 20;
@@ -29,18 +30,19 @@
   while (!end && max > 0) {
     console.log(`starting fetch page ${next + 1}`);
     const page = await fetch(
-      `https://api.bilibili.com/x/v2/reply/main?next=${next}&type=17&oid=${oid}`
+      `https://api.bilibili.com/x/v2/reply/main?next=${next}&type=11&oid=${oid}`
     ).then((response) => response.json());
     if (page && page.data && page.data.replies) {
       record(page.data.replies);
     }
+
     if (page.data.cursor.is_end) {
       end = true;
     }
     next++;
     max--;
-    // sleep(500)
-    await new Promise(r => setTimeout(r, 500));
+    // sleep(1000)
+    await new Promise((r) => setTimeout(r, 1000));
   }
 
   // dedup
@@ -49,12 +51,11 @@
   // output participant number
   console.log("Participant num:", uniqueParticipant.length);
 
-  // get random index
-  const randon = getRandomInt(uniqueParticipant.length);
-
   // output win uid
-  console.log(
-    "%cWin uid:" + uniqueParticipant[randon],
-    "color: red;font-size: 24px;font-weight: bold;"
-  );
+  for (let i = 0; i < amount; i++) {
+    console.log(
+      "%cWin uid:" + uniqueParticipant[getRandomInt(uniqueParticipant.length)],
+      "color: red;font-size: 24px;font-weight: bold;"
+    );
+  }
 })();
