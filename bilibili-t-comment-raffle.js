@@ -1,7 +1,7 @@
 (async function () {
   // config
-  const oid = "183839705"; // 3骨钉大师的荣耀
-  const amount = 3;
+  const oid = "632871432673558534"; // 王之印记
+  const amount = 1;
 
   // max-page size
   let max = 20;
@@ -30,7 +30,7 @@
   while (!end && max > 0) {
     console.log(`starting fetch page ${next + 1}`);
     const page = await fetch(
-      `https://api.bilibili.com/x/v2/reply/main?next=${next}&type=11&oid=${oid}`
+      `https://api.bilibili.com/x/v2/reply/main?next=${next}&type=17&oid=${oid}`
     ).then((response) => response.json());
     if (page && page.data && page.data.replies) {
       record(page.data.replies);
